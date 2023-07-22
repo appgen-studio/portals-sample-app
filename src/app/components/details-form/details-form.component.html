@@ -1,0 +1,60 @@
+<ng-container *ngIf="done; else formTemplate">
+    <div class="grid-wrapper">
+        <div
+            class="card selected"
+            nz-popconfirm
+            nzPopconfirmTitle="Reset?"
+            nzPopconfirmPlacement="right"
+            (nzOnConfirm)="setDone(false)"
+        >
+            <!-- prefix -->
+            <div class="icon-holder">
+                <i
+                    nz-icon
+                    nzType="check"
+                    nzTheme="outline"
+                ></i>
+            </div>
+
+            <!-- content -->
+            <div class="content">
+                <div class="card-title">
+                    <!-- {{ (userDetails?.firstName + ' ' + userDetails?.lastName) |
+                    titlecase }} -->
+                    {{userDetails?.fullName | titlecase}}
+                </div>
+                <p class="card-subtitle">{{ userDetails.email }}</p>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+<ng-template #formTemplate>
+    <form-v1
+        *ngIf="fields && fields.length"
+        [fields]="fields"
+        [values]="userDetails"
+        [showValidation]="showValidation"
+        (onChange)="onChangeHandler($event)"
+        (onReady)="onReadyHandler()"
+        (onBusy)="onBusyHandler()"
+    ></form-v1>
+
+    <div
+        *ngIf="paymentEnabled"
+        class="actions-wrapper"
+        style="text-align: center;"
+    >
+        <button
+            style="width: 150px;margin-top: 30px;"
+            nzSize="large"
+            nzShape="round"
+            nz-button
+            nzType="primary"
+            [nzLoading]="loading"
+            (click)="setDone(true)"
+        >
+            Next
+        </button>
+    </div>
+</ng-template>

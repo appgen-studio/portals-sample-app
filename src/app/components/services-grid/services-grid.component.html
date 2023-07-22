@@ -1,0 +1,106 @@
+<!-- ----------------------------------------------------------------------- -->
+<!--                                  Empty                                  -->
+<!-- ----------------------------------------------------------------------- -->
+
+<nz-empty
+    *ngIf="services.available.length === 0"
+    nzNotFoundImage="simple"
+    nzNotFoundContent="No Service Available"
+></nz-empty>
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                            Selected Service                             -->
+<!-- ----------------------------------------------------------------------- -->
+<div
+    *ngIf="selectedService"
+    class="selected-grid-item"
+>
+    <div class="card selected">
+        <!-- prefix -->
+        <div class="icon-holder">
+            <i
+                nz-icon
+                nzType="check"
+                nzTheme="outline"
+            ></i>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="card-title">
+                {{ selectedService.label }}
+            </div>
+            <p class="card-subtitle">{{ selectedService.description }}</p>
+        </div>
+
+        <!-- suffix -->
+        <div
+            class="card-suffix"
+            *ngIf="selectedService?.instructions"
+        >
+            <i
+                nz-icon
+                class="more-info"
+                nzType="info-circle"
+                nzTheme="fill"
+                nz-tooltip
+                [nzTooltipTitle]="selectedService?.instructions"
+                nzTooltipPlacement="right"
+            ></i>
+        </div>
+    </div>
+    <!-- reset button -->
+    <div
+        nz-popconfirm
+        [nzPopconfirmTitle]="'Reset?'"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="toggleService(selectedService)"
+        style="margin: auto;text-align: center; margin: 1rem;color: #969696;cursor: pointer;font-size: 1rem;"
+    >
+        <i
+            nz-icon
+            nzType="redo"
+            nzTheme="outline"
+        ></i>
+        {{'Reset'}}
+    </div>
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+<!--                           Avaliable Services                            -->
+<!-- ----------------------------------------------------------------------- -->
+
+<ng-container *ngIf="services.available.length && !selectedService">
+    <div
+        *ngFor="let service of services.available"
+        class="card"
+        (click)="toggleService(service)"
+    >
+        <!-- prefix -->
+        <div class="icon-holder"></div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="card-title">
+                {{ service.label }}
+            </div>
+            <p class="card-subtitle">{{ service.description }}</p>
+        </div>
+
+        <!-- suffix -->
+        <div
+            class="card-suffix"
+            *ngIf="service.instructions"
+        >
+            <i
+                nz-icon
+                class="more-info"
+                nzType="info-circle"
+                nzTheme="fill"
+                nz-tooltip
+                [nzTooltipTitle]="service.instructions"
+                nzTooltipPlacement="right"
+            ></i>
+        </div>
+    </div>
+</ng-container>

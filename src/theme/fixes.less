@@ -1,0 +1,23 @@
+// this file include workarounds and fixes
+
+// work around for not being able to set the primary-color to var(--primary)
+[class*='-primary'] {
+  background: var(--primary-color);
+  color: var(--primary-text-color);
+}
+
+// work around for unwanted hover effect on nz-button
+.ant-btn-primary:hover,
+.ant-btn-primary:focus,
+.ant-btn-primary:active {
+  color: var(--primary-text-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.ant-btn-secondary:hover,
+.ant-btn-secondary:focus,
+.ant-btn-secondary:active {
+  color: var(--secondary-text-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}

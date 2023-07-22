@@ -1,0 +1,18 @@
+<ng-container *ngFor="let date of dates">
+    <date-item
+        *ngIf="!selectedDate || isEqualToSelectedDate(date)"
+        [date]="date"
+        [selected]="isEqualToSelectedDate(date)"
+        (setSelected)="selectDate($event)"
+    ></date-item>
+</ng-container>
+<ng-container *ngIf="!dates || !dates.length">
+    <div class="message">
+        <nz-alert
+            nzType="warning"
+            nzShowIcon
+            nzDescription=" Currently there are no availabilities for this service"
+        >
+        </nz-alert>
+    </div>
+</ng-container>

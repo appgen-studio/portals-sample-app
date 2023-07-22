@@ -1,0 +1,97 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '../../../node_modules/ng-zorro-antd/ng-zorro-antd.less';
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+@import './theme/vars.less';
+// @import './theme/_antd.less';
+// @import './theme/fixes.less';
+
+.hidden {
+  display: none;
+}
+
+// TODO: move to theme
+nz-date-picker.inline {
+  width: 100% !important;
+  display: block !important;
+
+  .ant-picker-panel {
+    width: 100% !important;
+    border: 0px !important;
+  }
+  .ant-picker-date-panel {
+    width: 100% !important;
+  }
+  .ant-picker-content {
+    width: 100% !important;
+  }
+  nz-picker {
+    width: 100% !important;
+    display: inline-block !important;
+    .ant-calendar-picker {
+      width: 100% !important;
+    }
+  }
+  .ant-picker-month-panel {
+    width: 100% !important;
+  }
+  .ant-picker-year-panel {
+    width: 100% !important;
+  }
+
+  // style table headers
+  th {
+    font-weight: 700 !important;
+    color: gray !important;
+  }
+  .ant-picker-content th,
+  .ant-picker-content td {
+    line-height: 34px !important;
+    font-weight: 600px !important;
+  }
+  // remove borders
+  .ant-picker-panel .ant-picker-footer {
+    border: 0px !important;
+  }
+  // remove shadow
+  .ant-picker-panel-container {
+    box-shadow: unset !important;
+  }
+}
+
+// dragger
+nz-upload {
+  position: relative;
+}
+.ant-upload-drag {
+  border-radius: 18px !important;
+  background-color: #ffffff !important;
+}
+.ant-upload-list-text-container {
+  margin-top: -60px;
+  background-color: #ffffff;
+  padding: 10px;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+  row-gap: 20px;
+
+  .md({
+    grid-template-columns: 1fr;
+  });
+}
+
+.selected-grid-item {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  max-width: 520px;
+}

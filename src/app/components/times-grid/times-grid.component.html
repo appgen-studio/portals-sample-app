@@ -1,0 +1,20 @@
+<time-item
+    *ngFor="let slot of slots"
+    [time]="slot"
+    [count]="availability[slot]"
+    [selected]="selectedTime === slot"
+    [minLeadTime]="minLeadTime"
+    [maxLeadTime]="maxLeadTime"
+    [selectedDate]="selectedDate"
+    (setSelected)="selectTime($event)"
+></time-item>
+<nz-empty
+    *ngIf="slots?.length ===0"
+    nzNotFoundImage="assets/sleep_time_clock.svg"
+    nzNotFoundContent="No availability on this day"
+></nz-empty>
+
+<div class="time-info">
+    <span>Times are shown in local time
+        (<b>{{timezone}}</b>)</span>
+</div>

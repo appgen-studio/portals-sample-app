@@ -1,0 +1,207 @@
+<nz-layout>
+    <nz-content>
+
+        <nz-spin
+            nzSize="large"
+            style="width: 100%;padding: 15px"
+            [nzSpinning]="isLoading"
+        >
+
+
+            <section
+                class="status-section"
+                *ngIf="mode === 'status'"
+            >
+                <appt-status></appt-status>
+            </section>
+
+            <!-- ----------------------------------------------------------------------- -->
+            <!--                                 service                                 -->
+            <!-- ----------------------------------------------------------------------- -->
+
+            <section
+                class="select-service-section"
+                *ngIf="mode === 'appointment'"
+            >
+                <h2>Select Service</h2>
+                <services-grid></services-grid>
+            </section>
+
+            <!-- ----------------------------------------------------------------------- -->
+            <!--                                  time                                   -->
+            <!-- ----------------------------------------------------------------------- -->
+
+            <section
+                class="select-time-section"
+                *ngIf="selectedService &&  mode === 'appointment'"
+            >
+                <ng-container *ngIf="!isQueue">
+
+                    <h2>Select Appointment Date & Time</h2>
+
+                    <!-- ----------------------------------------------------------------------- -->
+                    <!--                           Reset Date and Time                           -->
+                    <!-- ----------------------------------------------------------------------- -->
+
+                    <selected-time *ngIf="
+                        isDateSelected && isTimeSelected;
+                        else dateTimeSelectorTmpl
+                    ">
+                    </selected-time>
+                    <!-- ----------------------------------------------------------------------- -->
+                    <!--                          Select Date and Time                           -->
+                    <!-- ----------------------------------------------------------------------- -->
+                    <ng-template #dateTimeSelectorTmpl>
+                        <div
+                            nz-row
+                            class="time-select-container"
+                        >
+                            <!-- ----------------------------------------------------------------------- -->
+                            <!--                               Select Date                               -->
+                            <!-- ----------------------------------------------------------------------- -->
+                            <div
+                                nz-col
+                                nzSpan="24"
+                            >
+                                <dates-grid></dates-grid>
+                            </div>
+
+                            <!-- ----------------------------------------------------------------------- -->
+                            <!--                               Select Time                               -->
+                            <!-- ----------------------------------------------------------------------- -->
+                            <hr />
+                            <div
+                                *ngIf="isDateSelected"
+                                nz-col
+                                nzSpan="24"
+                            >
+                                <times-grid></times-grid>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+
+                <ng-template #isQueueAvailability>
+                    <h2>Queue Service</h2>
+                    <p>🏁 Less than 2 minute wait time</p>
+                </ng-template>
+
+            </section>
+
+
+            <!-- ----------------------------------------------------------------------- -->
+            <!--                                 Details                                 -->
+            <!-- ----------------------------------------------------------------------- -->
+
+            <section
+                class="details-section"
+                *ngIf="(isDateSelected && isTimeSelected) || (mode === 'form') || isQueue"
+            >
+                <h2>Your Info</h2>
+                <div class="details-form-container">
+                    <details-form></details-form>
+                </div>
+            </section>
+
+            <!-- ----------------------------------------------------------------------- -->
+            <!--                                 Payment                                 -->
+            <!-- ----------------------------------------------------------------------- -->
+            <section *ngIf="paymentStepCond$ | async">
+                <h2>Payment Details</h2>
+                <payment></payment>
+            </section>
+
+            <!-- ----------------------------------------------------------------------- -->
+            <!--                                 Consent And Confirm                     -->
+            <!-- ----------------------------------------------------------------------- -->
+
+            <div
+                *ngIf="mode !== 'status' && (mode == 'form' || isReadyToSubmit)"
+                class="action-wrapper"
+            >
+                <div
+                    #consent
+                    class="consent"
+                    [innerHTML]="consentHTML | safe:'html'"
+                >
+                </div>
+
+                <button
+                    class="book-now-btn"
+                    nzSize="large"
+                    nzShape="round"
+                    nz-button
+                    nzType="primary"
+                    [nzLoading]="isLoading"
+                    (click)="submit()"
+                >
+                    {{ submitBtnLabel}}
+                </button>
+            </div>
+        </nz-spin>
+    </nz-content>
+
+    <nz-footer class="appgen-ref">
+        <div class="compliance">
+            <span>
+                <i
+                    nz-icon
+                    nzType="lock"
+                    nzTheme="outline"
+                ></i>
+                Data secured with 256bit SSL encryption<br>
+                <img
+                    width="14px"
+                    style="margin-bottom: 4px;"
+                    [src]="assetsURI+'/assets/maple_leaf.svg'"
+                >
+                Compliant with Canadian PIPEDA/PHIPA regulations
+
+            </span>
+        </div>
+        <div class="poweredbyag">
+            <span>Powered by
+            </span><a
+                href="https://portals.care"
+                target="blank"
+            ><img
+                    class="poweredbyag"
+                    style="height: 28px;"
+                    [src]="assetsURI+'/assets/powered_by_crm.svg'"
+                ></a>
+        </div>
+    </nz-footer>
+
+
+    <!-- footer -->
+    <!-- <nz-footer>
+        
+        <div style="
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+    ">
+            <img
+                [src]="assetsURI+'/assets/secure_ssl_seal.png'"
+                width="110px;"
+                style="margin-right: 10px;"
+            >
+            <span style="
+            line-height: 14px;
+            padding-bottom: 2px;
+            font-family: sans-serif;
+            font-size: 14px;
+            padding-top: 10px;
+            max-width: 380px;
+        ">
+                256 bit encryption powered by <a
+                    target="_blank"
+                    href="https://appgen.studio"
+                >AppGen Health CRM</a> in compliance with US and Canadian
+                HIPAA/PHIPA
+                regulations
+            </span>
+        </div>
+    </nz-footer> -->
+</nz-layout>

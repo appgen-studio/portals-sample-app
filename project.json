@@ -1,0 +1,128 @@
+{
+  "name": "portals-sample",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "src",
+  "prefix": "portals-booking",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "options": {
+        "customWebpackConfig": {
+          "path": "webpack.config.js"
+        },
+        "outputPath": "dist/apps/portals-sample",
+        "index": "src/index.html",
+        "main": "src/main.ts",
+        "polyfills": "src/polyfills.ts",
+        "tsConfig": "tsconfig.app.json",
+        "aot": true,
+        "optimization": false,
+        "buildOptimizer": true,
+        "outputHashing": "none",
+        "assets": [
+          "src/favicon.ico",
+          "src/assets",
+          {
+            "input": "libs/ui/src/assets",
+            "glob": "**/*",
+            "output": "assets/libs/ui"
+          },
+          {
+            "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+            "glob": "**/*",
+            "output": "/assets/"
+          }
+        ],
+        "styles": [
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+          "src/styles.less"
+        ],
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "validator",
+          "jsoneditor",
+          "lodash",
+          "angular2-text-mask"
+        ]
+      },
+      "configurations": {
+        "local": {
+          "optimization": true,
+          "buildOptimizer": true,
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "1000kb"
+            }
+          ]
+        },
+        "dev": {
+          "fileReplacements": [
+            {
+              "replace": "src/environments/environment.ts",
+              "with": ".env/portals-sample/environment.dev.ts"
+            }
+          ],
+          "optimization": true,
+          "buildOptimizer": true,
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "1000kb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/angular:webpack-dev-server",
+      "options": {
+        "browserTarget": "portals-sample:build:local",
+        "port": 4304
+      },
+      "configurations": {
+        "prod": {
+          "browserTarget": "portals-sample:build:prod"
+        }
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "portals-sample:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/**/*.ts",
+          "src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

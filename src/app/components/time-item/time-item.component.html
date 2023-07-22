@@ -1,0 +1,8 @@
+<div
+    class="card"
+    (click)="count == 0 ? null : select() "
+    [class.selected]="selected"
+    [class.disabled]="count == 0"
+>
+    {{ displayTime }}
+</div>

@@ -1,0 +1,21 @@
+@import '../../../theme/vars.less';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 15px;
+  padding: 0px 10px;
+  .md({
+    column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  });
+  .sm({
+    column-gap: 10px;
+    grid-template-columns: 1fr ;
+  });
+
+  .message {
+    grid-column: ~'1/4';
+  }
+}

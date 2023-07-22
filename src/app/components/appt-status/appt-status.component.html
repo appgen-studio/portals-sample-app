@@ -1,0 +1,64 @@
+<div class="card">
+
+    <h2>
+        Appointment Details
+    </h2>
+    <div class="details">
+
+        <!-- status -->
+        <div class="details-row">
+            <div class="details-label">
+                Status
+            </div>
+            <div class="details-value">
+                {{appointment?.status | titlecase}}
+            </div>
+        </div>
+
+        <!-- date -->
+        <div class="details-row">
+            <div class="details-label">
+                Date
+            </div>
+            <div class="details-value">
+                {{appointment?.reservation | date:'fullDate'}}
+            </div>
+        </div>
+
+        <!-- time -->
+        <div class="details-row">
+            <div class="details-label">
+                Time
+            </div>
+            <div class="details-value">
+                {{appointment?.reservation | date:'shortTime'}}
+            </div>
+        </div>
+
+        <!-- service -->
+        <div class="details-row">
+            <div class="details-label">
+                Service
+            </div>
+            <div class="details-value">
+                {{appointment?.service}}
+            </div>
+        </div>
+
+    </div>
+
+    <div
+        style="display: flex;gap: 1rem;margin-top: 1rem;flex-wrap: wrap;justify-content: center;align-items: center;">
+        <button
+            *ngIf="appointment && appointment?.status !== 'cancelled'"
+            nz-button
+            (click)="cancelAppointment()"
+        >Cancel Appointment</button>
+        <button
+            *ngIf="appointment && appointment?.status !== 'cancelled'"
+            nz-button
+            (click)="rescheduleAppointment()"
+        >Reschedule Appointment</button>
+    </div>
+
+</div>

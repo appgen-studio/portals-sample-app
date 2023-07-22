@@ -1,0 +1,218 @@
+<div class="grid-wrapper">
+
+
+    <ng-container *ngIf="canUseHc">
+        <div style="width: 100%;text-align: left;">
+            <h3>
+                This service is {{hcCoverage}}% covered by Ontario Health
+                Insurance Plan (OHIP)
+            </h3>
+
+            <button
+                *ngIf="!useHc"
+                nz-button
+                nzType="base"
+                class="pay-via-health-card"
+                (click)="useHc = true"
+            >
+                <span class="c-1">Use&nbsp;</span>
+                <span class="c-2">Ontario&nbsp;</span>
+                <span class="c-3">Health Card</span>
+            </button>
+        </div>
+    </ng-container>
+
+
+    <div
+        class="hc-container"
+        style="max-width: 3750px;"
+        *ngIf="canUseHc && useHc"
+    >
+
+
+        <div class="actions-wrapper">
+            <button
+                nz-button
+                nzSize="small"
+                nzType="default"
+                nzShape="circle"
+                nz-tooltip
+                nzTooltipTitle="Reset Health Card"
+                class="reset-btn"
+            >
+                <i
+                    nz-icon
+                    nzType="reload"
+                    (click)="resetHc()"
+                ></i>
+            </button>
+            <button
+                nz-button
+                nzSize="small"
+                nzType="default"
+                nzShape="circle"
+                nz-tooltip
+                nzTooltipTitle="Close Health Card"
+            >
+                <i
+                    nz-icon
+                    nzType="close"
+                    (click)="closeHc()"
+                ></i>
+            </button>
+        </div>
+
+        <ontario-hc
+            #hcCard
+            (changeEvent)="handleHcChange($event)"
+        >
+        </ontario-hc>
+
+        <p
+            style="text-align: left;color: #ff4d4f"
+            *ngIf="hcError"
+        >{{hcError}}</p>
+
+    </div>
+
+
+
+    <ng-container *ngIf="!useHc || !hcFullCover else payWithCreditBuTpl">
+
+        <div>
+
+            <h3>
+                Total amount: ${{price}} {{currency | uppercase}}
+            </h3>
+            <ng-container *ngIf="useHc">
+                <h3>
+                    Ontario health card coverage: {{hcCoverage}}%
+                </h3>
+                <h3>
+                    Total amount after coverage: {{amount}} {{currency |
+                    uppercase}}
+                </h3>
+            </ng-container>
+
+
+
+            <div class="stipe-card-wrapper">
+
+                <div class="actions-wrapper">
+                    <button
+                        nz-button
+                        nzSize="small"
+                        nzType="default"
+                        nzShape="circle"
+                        nz-tooltip
+                        nzTooltipTitle="Reset Credit Card"
+                        class="reset-btn"
+                    >
+                        <i
+                            nz-icon
+                            nzType="reload"
+                            (click)="resetStripeToken()"
+                        ></i>
+                    </button>
+                </div>
+                <div
+                    class="saved-stripe-card"
+                    *ngIf="stripeToken; else creditCardTpl"
+                >
+                    <h3 style="text-align: right;">
+                        <b
+                            style="font-size: 24px">{{stripeToken?.card?.brand}}</b>&nbsp;CARD
+                    </h3>
+                    <h2 class="card-numbers"><span
+                            class="stars">****&nbsp;****&nbsp;****</span>&nbsp;{{stripeToken?.card?.last4}}
+                    </h2>
+                    <h3><b>{{stripeToken?.card?.name}}</b></h3>
+
+                </div>
+                <ng-template #creditCardTpl>
+                    <div class="stripe-card">
+                        <form [formGroup]="stripeFG">
+
+                            <nz-form-item>
+                                <nz-form-control
+                                    nzErrorTip="* Required"
+                                    style="text-align: left;"
+                                >
+                                    <input
+                                        class="cardholder-name"
+                                        nz-input
+                                        nzBorderless
+                                        type="text"
+                                        formControlName="name"
+                                        placeholder="Cardholder Name"
+                                    >
+                                </nz-form-control>
+                            </nz-form-item>
+
+                            <ngx-stripe-card
+                                [options]="cardOptions"
+                                [elementsOptions]="elementsOptions"
+                            ></ngx-stripe-card>
+                            <p
+                                style="text-align: left;color: #ff4d4f"
+                                *ngIf="stripeError"
+                            >{{stripeError}}</p>
+
+                        </form>
+                        <span
+                            style="padding-left: 20px"
+                            class="stripe-title-wrapper"
+                        >Secured by
+                            <a
+                                href="https://stripe.com/docs/security"
+                                target="_blank"
+                            >Stripe</a>
+                        </span>
+                    </div>
+                </ng-template>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </ng-container>
+    <ng-template #payWithCreditBuTpl>
+        <div
+            style="margin: 1rem; display: flex;flex-direction: column; justify-content: center;align-items: center;">
+
+            <nz-divider></nz-divider>
+            <button
+                nz-button
+                nzType="base"
+                class="pay-via-credit-card"
+                (click)="useHc = false"
+            >
+                <span class="c-1">Pay&nbsp;</span>
+                <span class="c-2">via&nbsp;</span>
+                <span class="c-3">Credit Card</span>
+            </button>
+        </div>
+    </ng-template>
+
+    <br>
+    <div
+        *ngIf="!paymentValid"
+        class="actions-wrapper"
+    >
+        <button
+            style="width: 150px;"
+            nzSize="large"
+            nzShape="round"
+            nz-button
+            nzType="primary"
+            [nzLoading]="loading"
+            (click)="getToken()"
+        >
+            Next
+        </button>
+    </div>
+</div>

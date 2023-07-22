@@ -1,0 +1,33 @@
+@import '../../../theme/vars.less';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 15px;
+  padding: 0px 10px;
+  .md({
+    column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+  });
+}
+
+.time-info {
+  text-align: center;
+  padding: 15px 20px;
+  color: #7b73fc;
+  font-size: 16px;
+  background-color: #f0edff;
+  border-radius: 10px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  .md({
+    span{
+      display: block;
+      width: 100%;
+    }
+    grid-column-start: 1;
+    grid-column-end: 3;
+  });
+}

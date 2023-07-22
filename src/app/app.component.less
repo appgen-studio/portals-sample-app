@@ -1,0 +1,132 @@
+@import '../styles.less';
+
+@maxWidth: 800px;
+.actions-wrapper {
+  text-align: center;
+}
+
+nz-layout {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+  padding: 10px 20px;
+  overflow: auto;
+  padding-bottom: 40px;
+  display: block;
+  .sm({
+    padding: 0px 10px;
+  });
+}
+
+nz-content {
+  width: 100%;
+  max-width: @maxWidth;
+  .action-wrapper {
+    margin-top: 30px;
+    text-align: center;
+    .consent {
+      text-align: center;
+      color: #536476;
+    }
+
+    .book-now-btn {
+      min-width: 300px;
+      height: 50px;
+      font-weight: 600;
+
+      margin-bottom: 30px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+      .gradient-background();
+    }
+  }
+}
+
+section:not(:first-of-type) {
+  margin-top: 30px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: @accent-color;
+  margin-bottom: 15px;
+}
+
+.time-select-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px -5px #80808085;
+  .sm({
+    padding: 30px 5px;
+  });
+
+  nz-date-picker {
+    .lg-up({
+      padding-right: 15px;
+    });
+  }
+
+  times-grid {
+    margin-top: 40px;
+    .lg-up({
+      padding-left: 15px;
+    });
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Footer                                   */
+/* -------------------------------------------------------------------------- */
+nz-footer.appgen-ref {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  align-content: flex-start;
+  background-color: transparent;
+  color: #606060;
+  width: 100%;
+  max-width: @maxWidth;
+
+  padding: 40px 20px 20px 20px;
+  // bottom padding not needed because when embedded in website the page has a footer so will scroll enough
+  .md({    
+    padding: 60px 0px 0px 0px;
+  });
+
+  .compliance {
+    min-width: 360px;
+    font-family: serif;
+    font-size: 11pt;
+    max-width: 50%;
+    width: 100%;
+    text-align: left;
+    .md({
+        min-width: 0px;
+        max-width: 100%;
+      });
+  }
+
+  a {
+    .md({
+        width: 100%;
+        text-align: center;
+      });
+  }
+  .poweredbyag {
+    .md({
+        margin: 10px auto;
+      });
+  }
+}
+
+.field.StripeElement,
+.cardholder-name {
+  border: 1px solid #e0e0e0 !important;
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+}

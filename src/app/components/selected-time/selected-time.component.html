@@ -1,0 +1,48 @@
+<div class="selected-grid-item">
+    <div class="card">
+        <!-- prefix -->
+        <div class="icon-holder">
+            <i
+                nz-icon
+                nzType="clock-circle"
+                nzTheme="fill"
+            ></i>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="card-title">
+                {{ (date$ | async) | date }}
+                &nbsp;At&nbsp;{{ (displayTime) }}
+            </div>
+            <p class="card-subtitle">
+                Please make sure you are ready 10 minutes before appointment
+            </p>
+        </div>
+
+        <!-- suffix -->
+        <div class="card-suffix">
+            <i
+                nz-icon
+                class="more-info"
+                nzType="info-circle"
+                nzTheme="fill"
+            ></i>
+        </div>
+    </div>
+    <!-- reset button -->
+    <div
+        nz-popconfirm
+        [nzPopconfirmTitle]="'Reschedule?'"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="confirm()"
+        style="margin: auto;text-align: center; margin: 1rem;color: #969696;cursor: pointer;font-size: 1rem;"
+    >
+        <i
+            nz-icon
+            nzType="redo"
+            nzTheme="outline"
+        ></i>
+        {{'Reschedule'}}
+    </div>
+</div>

@@ -1,0 +1,105 @@
+/* -------------------------------------------------------------------------- */
+/*                                   colors                                   */
+/* -------------------------------------------------------------------------- */
+// ant override
+@primary-color: #ff7a59;
+// theme colors
+@accent-color: #3b3776;
+@layout-body-background: #fff;
+
+.gradient-background() {
+  // background-color: #ff7a59;
+  background: #d66d75; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #e29587,
+    #d66d75
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e29587,
+    #d66d75
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* -------------------------------------------------------------------------- */
+/*                                 Breakpoints                                */
+/* -------------------------------------------------------------------------- */
+
+// Extra small screen / phone
+@screen-xs: 480px;
+@screen-xs-min: @screen-xs;
+.xs(@rules) {
+  @media only screen and (max-width: @screen-xs) {
+    @rules();
+  }
+}
+.xs-up(@rules) {
+  @media only screen and (min-width: @screen-xs) {
+    @rules();
+  }
+}
+// Small screen / tablet
+@screen-sm: 576px;
+@screen-sm-min: @screen-sm;
+.sm(@rules) {
+  @media only screen and (max-width: @screen-sm) {
+    @rules();
+  }
+}
+.sm-up(@rules) {
+  @media only screen and (min-width: @screen-sm) {
+    @rules();
+  }
+}
+// Medium screen / desktop
+@screen-md: 768px;
+@screen-md-min: @screen-md;
+.md(@rules) {
+  @media only screen and (max-width: @screen-md) {
+    @rules();
+  }
+}
+.md-up(@rules) {
+  @media only screen and (min-width: @screen-md) {
+    @rules();
+  }
+}
+// Large screen / wide desktop
+@screen-lg: 992px;
+@screen-lg-min: @screen-lg;
+.lg(@rules) {
+  @media only screen and (max-width: @screen-lg) {
+    @rules();
+  }
+}
+.lg-up(@rules) {
+  @media only screen and (min-width: @screen-lg) {
+    @rules();
+  }
+}
+// Extra large screen / full hd
+@screen-xl: 1200px;
+@screen-xl-min: @screen-xl;
+.xl(@rules) {
+  @media only screen and (max-width: @screen-xl) {
+    @rules();
+  }
+}
+.xl-up(@rules) {
+  @media only screen and (min-width: @screen-xl) {
+    @rules();
+  }
+}
+// Extra extra large screen / large desktop
+@screen-xxl: 1600px;
+@screen-xxl-min: @screen-xxl;
+.xxl(@rules) {
+  @media only screen and (max-width: @screen-xxl) {
+    @rules();
+  }
+}
+.xxl-up(@rules) {
+  @media only screen and (min-width: @screen-xxl) {
+    @rules();
+  }
+}
