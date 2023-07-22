@@ -1,4 +1,4 @@
-# CarePortaks Sample App
+# CarePortals Sample App
 web component (embeddable) app with ability to book appointments and submit web forms via the portals.care public api
 
 [API Documentation](https://portals.care/refs/overview)
