@@ -12,8 +12,8 @@ import { takeWhile } from 'rxjs/operators';
 import {
   IOntarioHealthCard,
   IServicePayment
-} from '@appgen-health-crm/api-interfaces';
-import { OntarioHcComponent } from '@appgen-health-crm/ui';
+} from '@care-portals/api-interfaces';
+import { OntarioHcComponent } from '@care-portals/ui';
 import { combineLatest } from 'rxjs';
 
 @Component({

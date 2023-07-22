@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AppFacade } from './+store/+app/app.facade';
-import { IService } from '@appgen-health-crm/api-interfaces';
+import { IService } from '@care-portals/api-interfaces';
 import { takeWhile } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { StripeCardComponent, StripeService } from 'ngx-stripe';

@@ -6,7 +6,7 @@ import {
   IAvailabilitySchedule,
   IForm,
   IService
-} from '@appgen-health-crm/api-interfaces';
+} from '@care-portals/api-interfaces';
 import { IUserDetails } from '../../components/details-form/details-form.component';
 import { PaymentMethod, Token } from '@stripe/stripe-js';
 import { getHours, getMinutes } from 'date-fns';

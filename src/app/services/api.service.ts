@@ -14,7 +14,7 @@ import {
   IAppointment,
   ILead,
   AppointmentStatus
-} from '@appgen-health-crm/api-interfaces';
+} from '@care-portals/api-interfaces';
 import { catchError } from 'rxjs/operators';
 import { PaymentMethod } from '@stripe/stripe-js';
 import { Observable } from 'rxjs';

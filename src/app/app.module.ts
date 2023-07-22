@@ -41,12 +41,12 @@ import { DetailsFormComponent } from './components/details-form/details-form.com
 import { DateItemComponent } from './components/date-item/date-item.component';
 import { DatesGridComponent } from './components/dates-grid/dates-grid.component';
 import { SelectedTimeComponent } from './components/selected-time/selected-time.component';
-import { DateInputModule, OntarioHcModule } from '@appgen-health-crm/ui';
+import { DateInputModule, OntarioHcModule } from '@care-portals/ui';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { createCustomElement } from '@angular/elements';
 import { SafePipe } from './pipes/safe.pipe';
 import { NgxFileDropModule } from 'ngx-file-drop';
-import { FormV1Module } from '@appgen-health-crm/ui';
+import { FormV1Module } from '@care-portals/ui';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaymentComponent } from './components/payment/payment.component';
 import { AppointmentStatusComponent } from './components/appt-status/appt-status.component';

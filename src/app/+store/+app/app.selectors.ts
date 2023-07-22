@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IOntarioHealthCard } from '@appgen-health-crm/api-interfaces';
+import { IOntarioHealthCard } from '@care-portals/api-interfaces';
 import { FEATURE_KEY, State, AppPartialState } from './app.reducer';
 import { addMinutes, parseISO } from 'date-fns';
 

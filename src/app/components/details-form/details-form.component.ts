@@ -6,7 +6,7 @@ import {
   IForm,
   IFormField,
   IOntarioHealthCard
-} from '@appgen-health-crm/api-interfaces';
+} from '@care-portals/api-interfaces';
 import { ActivatedRoute } from '@angular/router';
 export interface IUserDetails {
   fullName: string;

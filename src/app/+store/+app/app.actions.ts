@@ -10,7 +10,7 @@ import {
   ILead,
   IOntarioHealthCard,
   IService
-} from '@appgen-health-crm/api-interfaces';
+} from '@care-portals/api-interfaces';
 import { PaymentMethod, Token } from '@stripe/stripe-js';
 
 export const loadApp = createAction('[APP] Load App');

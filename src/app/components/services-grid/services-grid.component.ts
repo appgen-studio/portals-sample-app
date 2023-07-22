@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IService } from '@appgen-health-crm/api-interfaces';
+import { IService } from '@care-portals/api-interfaces';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AppFacade } from '../../+store/+app/app.facade';

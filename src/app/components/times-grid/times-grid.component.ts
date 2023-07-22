@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { takeWhile } from 'rxjs/operators';
 import { AppFacade } from '../../+store/+app/app.facade';
-import { IAvailabilitySlot } from '@appgen-health-crm/api-interfaces';
+import { IAvailabilitySlot } from '@care-portals/api-interfaces';
 
 @Component({
   selector: 'times-grid',
